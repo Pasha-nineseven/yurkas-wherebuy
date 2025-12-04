@@ -2848,6 +2848,104 @@
                         });
                     })();
 				</script>
+
+				<!-- Call Modal -->
+				<div class="call-modal-overlay">
+					<div class="call-modal-container m-form">
+						<button class="call-modal-close" aria-label="Закрыть"></button>
+
+						<div class="call-modal__view">
+							<div class="call-modal-title">Закажите обратный звонок</div>
+							<div class="call-modal-txt">
+								Укажите ваши контактные данные, и наш менеджер свяжется с вами в ближайшее время для уточнения деталей и расчета точной стоимости двери.
+							</div>
+							<div class="call-modal-form">
+								<form action="#" method="post">
+									<div class="call-modal-form__item">
+										<input type="text" placeholder="Телефон*" id="">
+									</div>
+									<div class="call-modal-form__item m-select">
+										<select name="city" class="call-modal-select-native">
+											<option value="">Выберите город</option>
+											<option value="Брест">Брест</option>
+											<option value="Минск">Минск</option>
+											<option value="Витебск">Витебск</option>
+										</select>
+										<div class="call-modal-select">
+											<div class="call-modal-select__trigger">
+												<span class="call-modal-select__value">Выберите город</span>
+												<span class="call-modal-select__arrow"></span>
+											</div>
+											<div class="call-modal-select__options">
+												<div class="call-modal-select__option" data-value="Брест">Брест</div>
+												<div class="call-modal-select__option" data-value="Минск">Минск</div>
+												<div class="call-modal-select__option" data-value="Витебск">Витебск</div>
+												<div class="call-modal-select__option" data-value="Брест">Брест</div>
+												<div class="call-modal-select__option" data-value="Минск">Минск</div>
+												<div class="call-modal-select__option" data-value="Витебск">Витебск</div>
+												<div class="call-modal-select__option" data-value="Брест">Брест</div>
+												<div class="call-modal-select__option" data-value="Минск">Минск</div>
+												<div class="call-modal-select__option" data-value="Витебск">Витебск</div>
+											</div>
+										</div>
+									</div>
+									<div class="call-modal-form__item">
+										<div class="form-agree-input">
+											<input class="fx-form-checkbox-agree" type="checkbox" name="" id="fx-form-agree">
+											<label for="fx-form-agree" class="checkbox__label">
+												Даю согласие на обработку персональных данных в соответствии с <a href="#">условиями обработки</a> 
+											</label>
+										</div>
+									</div>
+									<div class="call-modal-form__item">
+										<div class="form-agree-input">
+											<input class="fx-form-checkbox-agree" type="checkbox" name="" id="fx-form-agree2">
+											<label for="fx-form-agree2" class="checkbox__label">
+												<a href="#">Ознакомлен с разъяснением прав, связанных с обработкой, механизмом их реализации, последствиями дачи согласия или отказа</a> 
+											</label>
+										</div>
+									</div>
+									<input type="submit" value="Отправить" class="call-modal-form__submit">
+									<!-- <button type="submit" class="call-modal-form__submit">Отправить</button> -->
+								</form>
+							</div>
+						</div>
+						<div class="call-modal__done">
+							<div class="call-modal-title">Спасибо</div>
+							<div class="call-modal-txt">
+								Ваша заявка отправлена
+							</div>
+							<a href="#" class="call-modal-form__submit call-modal-done-close">Закрыть</a>
+						</div>
+					</div>
+				</div>
+				<script>
+					document.addEventListener('DOMContentLoaded', function() {
+						const callModalContainer = document.querySelector('.call-modal-container');
+						const callModalSubmit = document.querySelector('.call-modal-form .call-modal-form__submit');
+						const callModalDoneClose = document.querySelector('.call-modal-done-close');
+						const callModalOverlay = document.querySelector('.call-modal-overlay');
+
+						if (callModalSubmit) {
+							callModalSubmit.addEventListener('click', function(e) {
+								e.preventDefault();
+								// FORM SUBMIT
+								callModalContainer.classList.add('is-done');
+							});
+						}
+
+						if (callModalDoneClose) {
+							callModalDoneClose.addEventListener('click', function(e) {
+								e.preventDefault();
+								callModalOverlay.classList.remove('active');
+								document.body.style.overflow = '';
+								setTimeout(function() {
+									callModalContainer.classList.remove('is-done');
+								}, 300);
+							});
+						}
+					});
+				</script>
     </body>
     <style>
 		body.no-scroll {

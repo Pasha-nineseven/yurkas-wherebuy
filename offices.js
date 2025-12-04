@@ -266,6 +266,112 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Call modal (callback)
+document.addEventListener('DOMContentLoaded', function() {
+    const callLinks = document.querySelectorAll('.p-offices-list__call');
+    const callModalOverlay = document.querySelector('.call-modal-overlay');
+    const callCloseButton = document.querySelector('.call-modal-close');
+    
+    if (!callModalOverlay) return;
+    
+    function openCallModal() {
+        callModalOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeCallModal() {
+        callModalOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
+    callLinks.forEach(function(callLink) {
+        callLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            openCallModal();
+        });
+    });
+
+    callModalOverlay.addEventListener('click', function(e) {
+        if (e.target === callModalOverlay) {
+            closeCallModal();
+        }
+    });
+    
+    if (callCloseButton) {
+        callCloseButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            closeCallModal();
+        });
+    }
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && callModalOverlay.classList.contains('active')) {
+            closeCallModal();
+        }
+    });
+
+    // Custom select in call modal
+    const callModalSelects = document.querySelectorAll('.call-modal-select');
+    
+    callModalSelects.forEach(function(customSelect) {
+        const trigger = customSelect.querySelector('.call-modal-select__trigger');
+        const valueSpan = customSelect.querySelector('.call-modal-select__value');
+        const options = customSelect.querySelectorAll('.call-modal-select__option');
+        const nativeSelect = customSelect.parentElement.querySelector('.call-modal-select-native');
+        
+        if (!nativeSelect.value) {
+            valueSpan.classList.add('placeholder');
+        }
+        
+        trigger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            callModalSelects.forEach(function(otherSelect) {
+                if (otherSelect !== customSelect) {
+                    otherSelect.classList.remove('open');
+                }
+            });
+            
+            customSelect.classList.toggle('open');
+        });
+        
+        options.forEach(function(option) {
+            option.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                const value = this.getAttribute('data-value');
+                const text = this.textContent;
+                
+                valueSpan.textContent = text;
+                
+                if (value === '') {
+                    valueSpan.classList.add('placeholder');
+                } else {
+                    valueSpan.classList.remove('placeholder');
+                }
+                
+                options.forEach(function(opt) {
+                    opt.classList.remove('selected');
+                });
+                this.classList.add('selected');
+                
+                if (nativeSelect) {
+                    nativeSelect.value = value;
+                }
+                
+                customSelect.classList.remove('open');
+            });
+        });
+    });
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.call-modal-select')) {
+            callModalSelects.forEach(function(customSelect) {
+                customSelect.classList.remove('open');
+            });
+        }
+    });
+});
+
 // Scroll to top button
 (function() {
     document.addEventListener('DOMContentLoaded', function() {
