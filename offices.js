@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const options = customSelect.querySelector('.custom-select-options');
         const optionItems = options.querySelectorAll('.custom-select-option');
         const selectedValueSpan = trigger.querySelector('.selected-value');
-        
+
         function setSelectedOption(option) {
             const optionCount = option.querySelector('.custom-select__count');
             
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const text = optionClone.textContent.trim();
             
             if (optionCount) {
-                selectedValueSpan.innerHTML = text + ' <div class="custom-select__count">' + optionCount.textContent + '</div>';
+                selectedValueSpan.innerHTML = '<div class="selected-text">' + text + '</div>' + ' <div class="custom-select__count">' + optionCount.textContent + '</div>';
             } else {
                 selectedValueSpan.textContent = text;
             }
@@ -88,6 +88,10 @@ document.addEventListener('DOMContentLoaded', function() {
             trigger.classList.add('active');
             options.classList.add('open');
             trigger.setAttribute('aria-expanded', 'true');
+
+			document.querySelectorAll('.dropdown-container').forEach(container => {
+				container.classList.remove('active');
+			});
         }
         
         function closeSelect() {
@@ -101,22 +105,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //Проложить путь кнопка
     document.addEventListener('click', function(e) {
-        const dropdownLink = e.target.closest('.dropdown-link');
-        if (dropdownLink) {
-            e.preventDefault();
-            const container = dropdownLink.closest('.dropdown-container');
-            if (container) {
-                container.classList.toggle('active');
-            }
-        } else {
-            const allContainers = document.querySelectorAll('.dropdown-container');
-            allContainers.forEach(container => {
-                if (!container.contains(e.target)) {
-                    container.classList.remove('active');
-                }
-            });
-        }
-    });
+		const dropdownLink = e.target.closest('.dropdown-link');
+		
+		if (dropdownLink) {
+			e.preventDefault();
+			const container = dropdownLink.closest('.dropdown-container');
+			
+			if (container) {
+				const wasActive = container.classList.contains('active');
+
+				document.querySelectorAll('.dropdown-container').forEach(item => {
+					item.classList.remove('active');
+				});
+				if (!wasActive) {
+					container.classList.add('active');
+				}
+			}
+		} else {
+			document.querySelectorAll('.dropdown-container').forEach(container => {
+				container.classList.remove('active');
+			});
+		}
+	});
 });
 
 
