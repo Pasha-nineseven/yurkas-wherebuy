@@ -433,11 +433,14 @@ a.inactive {
     margin-bottom: 5px;
     text-decoration: none!important;
     display: block;
-	color: #000;
-    pointer-events: none;
+	color: #000!important;
 }
 a.p-offices-list__phone:hover {
     color: #FFA400 !important;
+}
+
+.p-offices-list__phone.m-mobile{
+    display: none;
 }
 
 .p-offices-list__phone:last-child{
@@ -539,7 +542,9 @@ a.p-offices-list__phone:hover {
 }
 
 .offices-top__toggle:has(button:hover) .offices-top__list.active:not(:hover),
-.offices-top__toggle:has(button:hover) .offices-top__map.active:not(:hover) {
+.offices-top__toggle:has(button:hover) .offices-top__map.active:not(:hover),
+.offices-top__toggle:has(a:hover) .offices-top__list.active:not(:hover),
+.offices-top__toggle:has(a:hover) .offices-top__map.active:not(:hover) {
     border-bottom: 2px solid #BCBDBD!important;
 }
 
@@ -1298,7 +1303,9 @@ a.p-offices-list__phone:hover {
 .call-modal__done .call-modal-title{
     text-align: center;
 }
-
+.layout .offices__map{
+    overflow: hidden;
+}
 
 @media (max-width: 1600px){
     .p-offices-list__item.m-time,
@@ -1695,5 +1702,11 @@ a.p-offices-list__phone:hover {
     }
     .call-modal-select__value{
         font-size: 18px;
+    }
+    .p-offices-list__phone.m-mobile{
+        display: block;
+    }
+    .p-offices-list__phone.m-desktop{
+        display: none;
     }
 }
