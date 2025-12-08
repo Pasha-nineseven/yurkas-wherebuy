@@ -265,6 +265,7 @@ a.inactive {
 
 .p-offices-map-view{
     flex:1;
+    overflow: hidden;
     display: none;
 }
 .p-offices-map{
@@ -272,6 +273,7 @@ a.inactive {
     height: 640px;
     overflow: hidden;
     position: relative;
+    z-index: 2;
 	border-radius: 8px;
 }
 .p-offices-list{
@@ -461,7 +463,8 @@ a.p-offices-list__phone:hover {
     padding-left: 27px;
     position: relative;
 }
-.p-offices-list.minify .p-offices-list__time:before{
+.p-offices-list.minify .p-offices-list__time:before,
+.map-info-panel__description .p-offices-list__time:before{
     content: "";
     display: inline-block;
     width: 22px;
@@ -472,7 +475,14 @@ a.p-offices-list__phone:hover {
     top: 50%;
     transform: translateY(-50%);
 }
-
+.map-info-panel__description .p-offices-list__phone,
+.map-info-panel__description .p-offices-list__time{
+    padding-left: 35px;
+}
+.map-info-panel__description .p-offices-list__phone:before{
+    left: 5px;
+    top: 1px;
+}
 .p-offices-list__salon{
     font-size: 22px;
     line-height: 1.1;
@@ -1307,6 +1317,92 @@ a.p-offices-list__phone:hover {
     overflow: hidden;
 }
 
+/* Кастомная панель информации на карте */
+.map-info-panel {
+    position: absolute;
+    /* top: 20px; */
+    bottom: 20px;
+    right: 20px;
+    width: 400px;
+    max-width: calc(100% - 40px);
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    padding: 17px;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.map-info-panel__close {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 29px;
+    height: 29px;
+    border: none;
+    background: #EBEBEB url("data:image/svg+xml,%3Csvg width='11' height='11' viewBox='0 0 11 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.23013 0.23013C0.536971 -0.0767101 1.03446 -0.0767101 1.3413 0.23013L5.5 4.38883L9.6587 0.23013C9.96554 -0.0767101 10.463 -0.0767101 10.7699 0.23013C11.0767 0.536971 11.0767 1.03446 10.7699 1.3413L6.61117 5.5L10.7699 9.6587C11.0767 9.96554 11.0767 10.463 10.7699 10.7699C10.463 11.0767 9.96554 11.0767 9.6587 10.7699L5.5 6.61117L1.3413 10.7699C1.03446 11.0767 0.536971 11.0767 0.23013 10.7699C-0.0767101 10.463 -0.0767101 9.96554 0.23013 9.6587L4.38883 5.5L0.23013 1.3413C-0.0767101 1.03446 -0.0767101 0.536971 0.23013 0.23013Z' fill='black'/%3E%3C/svg%3E") center no-repeat!important;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .2s ease;
+    z-index: 1;
+}
+
+.map-info-panel__close:hover {
+    background: #EBEBEB url("data:image/svg+xml,%3Csvg width='11' height='11' viewBox='0 0 11 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.23013 0.23013C0.536971 -0.0767101 1.03446 -0.0767101 1.3413 0.23013L5.5 4.38883L9.6587 0.23013C9.96554 -0.0767101 10.463 -0.0767101 10.7699 0.23013C11.0767 0.536971 11.0767 1.03446 10.7699 1.3413L6.61117 5.5L10.7699 9.6587C11.0767 9.96554 11.0767 10.463 10.7699 10.7699C10.463 11.0767 9.96554 11.0767 9.6587 10.7699L5.5 6.61117L1.3413 10.7699C1.03446 11.0767 0.536971 11.0767 0.23013 10.7699C-0.0767101 10.463 -0.0767101 9.96554 0.23013 9.6587L4.38883 5.5L0.23013 1.3413C-0.0767101 1.03446 -0.0767101 0.536971 0.23013 0.23013Z' fill='%23FFA400'/%3E%3C/svg%3E") center no-repeat!important;
+}
+
+.map-info-panel__image {
+    margin: 0 0 16px 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.map-info-panel__image img {
+    display: block;
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.map-info-panel__title {
+    margin: 0 0 12px;
+    font-size: 19px;
+    line-height: 1.1;
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 800;
+    color: #3D3935;
+    margin-bottom: 15px;
+    padding: 0 43px 0 0;
+}
+
+.map-info-panel__description {
+    font-size: 17px;
+    line-height: 1.2;
+    color: #3D3935;
+}
+
+.map-info-panel__description span {
+    display: block;
+    margin-bottom: 4px;
+}
+.map-info-panel .dropdown-menu {
+    top: auto;
+    bottom: 100%;
+    margin: 0 0 -3px 0;
+    border-top: 2px solid #D9DADA;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 0;
+}
+.map-info-panel .dropdown__links {
+    border-top: 0;
+    border-bottom: 1px solid #D9DADA;
+    margin: 0 0 3px 0;
+}
+.map-info-panel .p-offices-list__links {
+    margin: 15px 0 -10px 0;
+}
+
+
 @media (max-width: 1600px){
     .p-offices-list__item.m-time,
     .p-offices-list__item.m-phone,
@@ -1345,6 +1441,11 @@ a.p-offices-list__phone:hover {
         align-items: flex-start;
         padding: 0 0 0 10px;
     }
+    .map-info-panel .p-offices-list__links {
+        flex-direction: row;
+        align-items: center;
+        padding: 0;
+    }
     .p-offices-list__tomap{
         margin-left: 0;
     }
@@ -1375,6 +1476,10 @@ a.p-offices-list__phone:hover {
     .gmaps-link:before{
         width: 22px;
         height: 22px;
+    }
+    .map-info-panel .p-offices-list__more,
+    .map-info-panel .dropdown-container {
+        margin-bottom: 0;
     }
 }
 
@@ -1709,4 +1814,15 @@ a.p-offices-list__phone:hover {
     .p-offices-list__phone.m-desktop{
         display: none;
     }
+    .map-info-panel {
+        top: 20px;
+        bottom: 20px;
+        right: 10px;
+        left: 10px;
+        width: auto;
+        max-width: none;
+        max-height: calc(100% - 40px);
+        overflow-y: auto;
+    }
 }
+

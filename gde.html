@@ -90,12 +90,12 @@
 
         <script src="js/main.min.js?v2" type="module" defer data-skip-moving="true"></script>
 
+		<script src="js/map-points.js" defer></script>
+		<script src="js/map.js" defer></script>
 
 
-        <link href="offices.css?v3" type="text/css" rel="stylesheet" />
-		<script src="offices.js?v4"></script>
-
-		<script src="js/offices-list-height.js"></script>
+        <link href="offices.css" type="text/css" rel="stylesheet" />
+		<script src="offices.js"></script>
 
 
         <script data-skip-moving="true">
@@ -2069,8 +2069,18 @@
 									</div>
 
 									<div class="p-offices-map-view">
-										<div class="p-offices-map" id="map" style="background: #ccc;">
-											<a href="#" class="map-scale">Вернуть маштаб</a>
+										<div 
+											class="p-offices-map" 
+											id="map-offices" >
+											<a href="#" class="map-scale">Вернуть масштаб</a>
+											<!-- Кастомная панель информации о точке -->
+											<div class="map-info-panel" id="mapInfoPanel" style="display: none;">
+												<button class="map-info-panel__close" type="button"></button>
+												<div class="map-info-panel__image"></div>
+												<div class="map-info-panel__title"></div>
+												<div class="map-info-panel__description"></div>
+												<div class="p-offices-list__links"></div>
+											</div>
 										</div>
 										<div class="offices-city">
 											<div class="offices-city__list">

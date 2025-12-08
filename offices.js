@@ -188,6 +188,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Синхронизация высоты списка с высотой блока карты
+document.addEventListener('DOMContentLoaded', function() {
+    const officesList = document.querySelector('.p-offices-list');
+    const officesMapView = document.querySelector('.p-offices-map-view');
+    const officesListWrap = document.querySelector('.p-offices-list__wrap');
+    
+    function syncListHeight() {
+        if (officesMapView && officesListWrap && officesList && officesList.classList.contains('minify')) {
+            const mapViewHeight = officesMapView.offsetHeight;
+            if (mapViewHeight > 0) {
+                officesListWrap.style.maxHeight = mapViewHeight + 'px';
+            }
+        } else if (officesListWrap) {
+            officesListWrap.style.maxHeight = '';
+        }
+    }
+    
+    if (officesMapView) {
+        const resizeObserver = new ResizeObserver(syncListHeight);
+        resizeObserver.observe(officesMapView);
+    }
+    
+    // observe
+    if (officesList) {
+        const mutationObserver = new MutationObserver(syncListHeight);
+        mutationObserver.observe(officesList, { attributes: true, attributeFilter: ['class'] });
+    }
+    
+    window.addEventListener('resize', syncListHeight);
+});
+
+
+
 // Photo popup modal
 document.addEventListener('DOMContentLoaded', function() {
     const photoPopups = document.querySelectorAll('.photo-popup');
