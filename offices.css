@@ -278,6 +278,7 @@ a.inactive {
 }
 .p-offices-list{
     width: 100%;
+    color: #3D3935;
 }
 .p-offices-list.minify{
     min-width: 632px;
@@ -435,7 +436,7 @@ a.inactive {
     margin-bottom: 5px;
     text-decoration: none!important;
     display: block;
-	color: #000!important;
+	color: #3D3935!important;
 }
 a.p-offices-list__phone:hover {
     color: #FFA400 !important;
@@ -651,13 +652,13 @@ a.p-offices-list__phone:hover {
     display: flex;
     align-items: center;
     text-decoration: none!important;
-	color: #000;
+	color: #3D3935!important;
 }
 .offices-city__txt{
     transition: all .25s ease;
 }
 .offices-city__txt:hover{
-    color: #FFA400;
+    color: #FFA400!important;
 }
 
 .offices-city__count{
@@ -1049,7 +1050,7 @@ a.p-offices-list__phone:hover {
 }
 .offices-city__toggle{
     display: none;
-    color: #000;
+    color: #3D3935;
 }
 .offices-city__toggle:hover{
     color: #FFA400!important;
@@ -1348,19 +1349,19 @@ a.p-offices-list__phone:hover {
 }
 
 .map-info-panel__close:hover {
-    background: #EBEBEB url("data:image/svg+xml,%3Csvg width='11' height='11' viewBox='0 0 11 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.23013 0.23013C0.536971 -0.0767101 1.03446 -0.0767101 1.3413 0.23013L5.5 4.38883L9.6587 0.23013C9.96554 -0.0767101 10.463 -0.0767101 10.7699 0.23013C11.0767 0.536971 11.0767 1.03446 10.7699 1.3413L6.61117 5.5L10.7699 9.6587C11.0767 9.96554 11.0767 10.463 10.7699 10.7699C10.463 11.0767 9.96554 11.0767 9.6587 10.7699L5.5 6.61117L1.3413 10.7699C1.03446 11.0767 0.536971 11.0767 0.23013 10.7699C-0.0767101 10.463 -0.0767101 9.96554 0.23013 9.6587L4.38883 5.5L0.23013 1.3413C-0.0767101 1.03446 -0.0767101 0.536971 0.23013 0.23013Z' fill='%23FFA400'/%3E%3C/svg%3E") center no-repeat!important;
+    background: #DEE0E4 url("data:image/svg+xml,%3Csvg width='11' height='11' viewBox='0 0 11 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.23013 0.23013C0.536971 -0.0767101 1.03446 -0.0767101 1.3413 0.23013L5.5 4.38883L9.6587 0.23013C9.96554 -0.0767101 10.463 -0.0767101 10.7699 0.23013C11.0767 0.536971 11.0767 1.03446 10.7699 1.3413L6.61117 5.5L10.7699 9.6587C11.0767 9.96554 11.0767 10.463 10.7699 10.7699C10.463 11.0767 9.96554 11.0767 9.6587 10.7699L5.5 6.61117L1.3413 10.7699C1.03446 11.0767 0.536971 11.0767 0.23013 10.7699C-0.0767101 10.463 -0.0767101 9.96554 0.23013 9.6587L4.38883 5.5L0.23013 1.3413C-0.0767101 1.03446 -0.0767101 0.536971 0.23013 0.23013Z' fill='black'/%3E%3C/svg%3E") center no-repeat!important;
 }
 
 .map-info-panel__image {
     margin: 0 0 16px 0;
     border-radius: 8px;
+    height: 180px;
     overflow: hidden;
 }
 
 .map-info-panel__image img {
     display: block;
     width: 100%;
-    height: 160px;
     object-fit: cover;
 }
 
